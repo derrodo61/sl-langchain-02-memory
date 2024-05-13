@@ -14,6 +14,11 @@ from langchain_core.prompts import (
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import LLMChain
 
+if "memory" not in st.session_state:
+    st.session_state.memory = ConversationBufferMemory(
+        memory_key="chat_history",
+        return_messages=True,
+    )
 
 st.title("RD - Chat with non-persistent memory")
 
@@ -43,7 +48,11 @@ def generate_response(user_input):
         name="llama3-70b-8192",
         api_key=groq_api_key,
     )
-    chain = LLMChain(llm=model, prompt=prompt, memory=memory, verbose=True)
+    # chain = LLMChain(llm=model, prompt=prompt, memory=memory, verbose=True)
+    # Use state.memory instead of memory
+    chain = LLMChain(
+        llm=model, prompt=prompt, memory=st.session_state.memory, verbose=True
+    )
     result = chain.invoke({"user_input": user_input})
     st.info(result["text"])
     st.info(result)
