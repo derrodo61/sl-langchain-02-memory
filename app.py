@@ -48,10 +48,11 @@ def generate_response(user_input):
         name="llama3-70b-8192",
         api_key=groq_api_key,
     )
-    # chain = LLMChain(llm=model, prompt=prompt, memory=memory, verbose=True)
-    # Use state.memory instead of memory
     chain = LLMChain(
-        llm=model, prompt=prompt, memory=st.session_state.memory, verbose=True
+        llm=model,
+        prompt=prompt,
+        memory=st.session_state.memory,
+        verbose=False,
     )
     result = chain.invoke({"user_input": user_input})
     st.info(result["text"])
