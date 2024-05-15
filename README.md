@@ -3,3 +3,5 @@
 LangChanin and Streamlit.
 
 A chat bot with a very basic chat history which is saved in a Streamlit session property.
+
+LLM is Llama3 70b via Groq.
