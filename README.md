@@ -1,2 +1,5 @@
 # sl-langchain-02-memory
-Adding a simple memory to the chat
+
+LangChanin and Streamlit.
+
+A chat bot with a very basic chat history which is saved in a Streamlit session property.
